@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>home</title>
+<style type="text/css">
+.top-level-menu
+{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.top-level-menu > li
+{
+    position: relative;
+    float: left;
+    height: 30px;
+    width: 150px;
+    background: #999999;
+}
+.top-level-menu a
+{
+    font: bold 14px;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 0 0 0 10px;
+    display: block;
+    line-height: 30px;
+}
+.top-level-menu a:hover { color: #000000; }
+.top-level-menu > li:hover { background: #CCCCCC; }
+.top-level-menu li:hover > ul
+{
+    display: inline;
+}
+
+.second-level-menu
+{
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 150px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+}
+
+.second-level-menu > li
+{
+    position: relative;
+    height: 30px;
+    background: #999999;
+}
+.second-level-menu > li:hover { background: #CCCCCC; }
+
+
+.third-level-menu
+{
+    position: absolute;
+    top: 0;
+    right: -150px;
+    width: 150px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+}
+.third-level-menu > li
+{
+	position: relative;
+    height: 30px;
+    background: #999999;
+}
+.fourth-level-menu > li:hover { background: #CCCCCC; }
+
+.fourth-level-menu
+{
+    position: absolute;
+    top: 0;
+    right: -150px;
+    width: 150px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+}
+.fourth-level-menu > li
+{
+	position: relative;
+    height: 30px;
+    background: #999999;
+}
+.fourth-level-menu > li:hover { background: #CCCCCC; }
+
+</style>
+<body>
+  <ul class="top-level-menu">
+    <li>
+        <a href="#">List</a>
+        <ul class="second-level-menu">
+        	{% for i in cat %}
+            	<li><a href="#">{{ i.course_name }}</a>
+                	<ul class="third-level-menu">
+                		{% for j in sub %}
+		  					{% if j.subcat.course_name == i.course_name %}
+                    			<li><a href="#">{{j.subcatname}}</a>
+                    				<ul class="fourth-level-menu">
+                    					{% for k in susub %}
+                							{% if k.subsub == j %}
+                    							<li><a href="#">{{k.subsubname}}</a></li>
+                    						{% endif %}
+                    					{% endfor %}
+                    				</ul>
+                    			</li>
+                    		{% endif %}
+                    	{% endfor %}			
+                	</ul>
+                </li>	
+            {% endfor %}    
+        </ul>
+    </li>	
+   </ul>
+</body>
+</html>
